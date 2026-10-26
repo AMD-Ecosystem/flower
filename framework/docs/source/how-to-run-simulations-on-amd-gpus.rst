@@ -191,11 +191,13 @@ re-imports Ray on startup, this also surfaces indirectly as workers that never r
 
 Satisfy Ray without disturbing ``ROCR_VISIBLE_DEVICES``, by deriving
 ``HIP_VISIBLE_DEVICES`` from how many devices it already lists rather than copying its
-values:
+values. Only do this when ``HIP_VISIBLE_DEVICES`` is not already set -- the import error
+this works around only occurs in that case, and an existing value may deliberately
+select a subset of the ROCr-visible devices:
 
 .. code-block:: shell
 
-    if [ -n "${ROCR_VISIBLE_DEVICES:-}" ]; then
+    if [ -n "${ROCR_VISIBLE_DEVICES:-}" ] && [ -z "${HIP_VISIBLE_DEVICES:-}" ]; then
         _n=$(($(tr -cd ',' <<<"$ROCR_VISIBLE_DEVICES" | wc -c) + 1))
         export HIP_VISIBLE_DEVICES="$(seq -s, 0 $((_n - 1)))"
         unset _n
@@ -217,9 +219,11 @@ values:
     restricts you to, after filtering there are exactly that many devices, numbered
     contiguously from ``0``. Selecting all of them (``0`` through ``n-1`` in
     ``HIP_VISIBLE_DEVICES``) reproduces the original restriction exactly, while leaving
-    ``ROCR_VISIBLE_DEVICES`` itself untouched. This replaces any ``HIP_VISIBLE_DEVICES``
-    already set, since a value set in terms of physical IDs cannot be correct once
-    ``ROCR_VISIBLE_DEVICES`` is also present.
+    ``ROCR_VISIBLE_DEVICES`` itself untouched. The snippet only synthesizes this value
+    when ``HIP_VISIBLE_DEVICES`` is unset: an existing value is already expressed in the
+    renumbered space and may deliberately select a subset of it -- for example, to
+    dedicate only one of two ROCr-visible devices to this process -- so it is left
+    alone.
 
 .. important::
 
@@ -232,11 +236,10 @@ values:
     therefore not proof that a run will succeed.
 
     Stop the stale SuperLink before trusting those checks or applying simulation
-    configuration:
-
-    .. code-block:: shell
-
-        pkill -f flower-superlink
+    configuration, using the inspect-then-terminate procedure in
+    :ref:`stop-background-local-superlink`. Matching on the bare process name risks
+    killing every ``flower-superlink`` process the account owns, including unrelated
+    runs; that procedure scopes the match to the managed port instead.
 
     ``flwr run`` starts a new one automatically, which copies the corrected environment
     of the shell that invokes it. There is no dedicated ``flwr`` command to stop just
