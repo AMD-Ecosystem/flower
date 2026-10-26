@@ -197,7 +197,7 @@ select a subset of the ROCr-visible devices:
 
 .. code-block:: shell
 
-    if [ -n "${ROCR_VISIBLE_DEVICES:-}" ] && [ -z "${HIP_VISIBLE_DEVICES:-}" ]; then
+    if [ -n "${ROCR_VISIBLE_DEVICES:-}" ] && [ -z "${HIP_VISIBLE_DEVICES+x}" ]; then
         _n=$(($(tr -cd ',' <<<"$ROCR_VISIBLE_DEVICES" | wc -c) + 1))
         export HIP_VISIBLE_DEVICES="$(seq -s, 0 $((_n - 1)))"
         unset _n
