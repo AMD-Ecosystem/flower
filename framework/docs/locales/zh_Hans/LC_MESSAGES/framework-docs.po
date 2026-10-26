@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flower main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 00:09+0000\n"
+"POT-Creation-Date: 2026-10-24 00:09+0000\n"
 "PO-Revision-Date: 2026-06-11 04:01+0000\n"
 "Last-Translator: reducedradius <feixiang512@outlook.com>\n"
 "Language: zh_Hans\n"
@@ -48,9 +48,9 @@ msgstr "以问题为导向的 \"如何做 \"指南逐步展示如何实现特定
 msgid "Changelog"
 msgstr "更新日志"
 
-#: ../../source/changelog/v1.40.0.md:2
+#: ../../source/changelog/v1.42.0.md:2
 #, fuzzy
-msgid "v1.40.0 (2026-10-14)"
+msgid "v1.42.0 (2026-10-22)"
 msgstr ""
 
 #: ../../source/changelog/v1.0.0.md:11 ../../source/changelog/v1.1.0.md:4
@@ -74,6 +74,7 @@ msgstr ""
 #: ../../source/changelog/v1.36.0.md:4 ../../source/changelog/v1.37.0.md:4
 #: ../../source/changelog/v1.38.0.md:4 ../../source/changelog/v1.39.0.md:4
 #: ../../source/changelog/v1.4.0.md:4 ../../source/changelog/v1.40.0.md:4
+#: ../../source/changelog/v1.41.0.md:4 ../../source/changelog/v1.42.0.md:4
 #: ../../source/changelog/v1.5.0.md:4 ../../source/changelog/v1.6.0.md:4
 #: ../../source/changelog/v1.7.0.md:4 ../../source/changelog/v1.8.0.md:4
 #: ../../source/changelog/v1.9.0.md:4
@@ -100,6 +101,7 @@ msgstr "感谢我们的贡献者"
 #: ../../source/changelog/v1.36.0.md:6 ../../source/changelog/v1.37.0.md:6
 #: ../../source/changelog/v1.38.0.md:6 ../../source/changelog/v1.39.0.md:6
 #: ../../source/changelog/v1.4.0.md:6 ../../source/changelog/v1.40.0.md:6
+#: ../../source/changelog/v1.41.0.md:6 ../../source/changelog/v1.42.0.md:6
 #: ../../source/changelog/v1.5.0.md:6 ../../source/changelog/v1.6.0.md:6
 #: ../../source/changelog/v1.7.0.md:6 ../../source/changelog/v1.8.0.md:6
 #: ../../source/changelog/v1.9.0.md:6
@@ -108,12 +110,9 @@ msgid ""
 " the new version of Flower possible (in `git shortlog` order):"
 msgstr "在此，我们要特别感谢所有为 Flower 的新版本做出贡献的人员（按 `git shortlog` 顺序排列）："
 
-#: ../../source/changelog/v1.40.0.md:8
+#: ../../source/changelog/v1.42.0.md:8
 #, fuzzy
-msgid ""
-"`Charles Beauville`, `Chong Shen Ng`, `Daniel J. Beutel`, `Daniel Nata "
-"Nugraha`, `Dimitris Stripelis`, `Heng Pan`, `Istiaque Ahmed`, `Javier`, "
-"`Julian Rußmeyer`, `Ruth Galindo`, `Stephane Moroso`, `Taner Topal`"
+msgid "`Charles Beauville`, `Chong Shen Ng`, `Heng Pan`, `Javier`, `Taner Topal`"
 msgstr ""
 
 #: ../../source/changelog/v0.13.0.md:4 ../../source/changelog/v0.14.0.md:4
@@ -140,11 +139,194 @@ msgstr ""
 #: ../../source/changelog/v1.36.0.md:10 ../../source/changelog/v1.37.0.md:10
 #: ../../source/changelog/v1.38.0.md:10 ../../source/changelog/v1.39.0.md:10
 #: ../../source/changelog/v1.4.0.md:10 ../../source/changelog/v1.40.0.md:10
+#: ../../source/changelog/v1.41.0.md:10 ../../source/changelog/v1.42.0.md:10
 #: ../../source/changelog/v1.5.0.md:10 ../../source/changelog/v1.6.0.md:10
 #: ../../source/changelog/v1.7.0.md:10 ../../source/changelog/v1.8.0.md:10
 #: ../../source/changelog/v1.9.0.md:10
 msgid "What's new?"
 msgstr "有什么新内容？"
+
+#: ../../source/changelog/v1.42.0.md:12
+#, fuzzy
+msgid ""
+"**Reduce Agent response latency with faster warm-pool handoff** "
+"([#8280](https://github.com/flwrlabs/flower/pull/8280))"
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:14
+msgid ""
+"Ready warm Pods are now handed off before Kubernetes replenishes the "
+"pool. Reconciliation creates replacements while tasks run, avoiding "
+"Kubernetes list and Pod-creation requests during successful warm token "
+"handoff."
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:16
+#, fuzzy
+msgid ""
+"**Train the vertical FL example reliably** "
+"([#8396](https://github.com/flwrlabs/flower/pull/8396))"
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:18
+msgid ""
+"The vertical FL example now aligns shuffled features and labels, reuses "
+"the model state that produced each embedding, requires complete feature "
+"and gradient exchanges, and reports training loss and accuracy from the "
+"same model state."
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:20
+#, fuzzy
+msgid ""
+"**Improve Python TLS security following the eMudhra CA incident** "
+"([#8400](https://github.com/flwrlabs/flower/pull/8400))"
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:22
+msgid ""
+"Following the eMudhra CA compromise, Flower now requires "
+"`certifi>=2026.10.19` and `uv>=0.13.5,<0.14.0` to mitigate risks from "
+"compromised CA certificates. CI, container, and baseline bootstraps also "
+"use updated, pinned build tools. Existing installations and images must "
+"be updated or rebuilt to receive these security improvements."
+msgstr ""
+
+#: ../../source/changelog/v1.42.0.md:24
+#, fuzzy
+msgid ""
+"**General improvements** "
+"([#8369](https://github.com/flwrlabs/flower/pull/8369), "
+"[#8391](https://github.com/flwrlabs/flower/pull/8391), "
+"[#8392](https://github.com/flwrlabs/flower/pull/8392), "
+"[#8393](https://github.com/flwrlabs/flower/pull/8393), "
+"[#8398](https://github.com/flwrlabs/flower/pull/8398), "
+"[#8399](https://github.com/flwrlabs/flower/pull/8399), "
+"[#8403](https://github.com/flwrlabs/flower/pull/8403), "
+"[#8405](https://github.com/flwrlabs/flower/pull/8405))"
+msgstr ""
+
+#: ../../source/changelog/v1.10.0.md:68 ../../source/changelog/v1.11.0.md:65
+#: ../../source/changelog/v1.12.0.md:64 ../../source/changelog/v1.13.0.md:69
+#: ../../source/changelog/v1.13.1.md:32 ../../source/changelog/v1.14.0.md:63
+#: ../../source/changelog/v1.15.0.md:80 ../../source/changelog/v1.16.0.md:54
+#: ../../source/changelog/v1.17.0.md:85 ../../source/changelog/v1.18.0.md:50
+#: ../../source/changelog/v1.19.0.md:68 ../../source/changelog/v1.20.0.md:66
+#: ../../source/changelog/v1.21.0.md:56 ../../source/changelog/v1.22.0.md:40
+#: ../../source/changelog/v1.23.0.md:48 ../../source/changelog/v1.24.0.md:42
+#: ../../source/changelog/v1.25.0.md:36 ../../source/changelog/v1.26.0.md:44
+#: ../../source/changelog/v1.27.0.md:50 ../../source/changelog/v1.28.0.md:50
+#: ../../source/changelog/v1.29.0.md:46 ../../source/changelog/v1.30.0.md:34
+#: ../../source/changelog/v1.31.0.md:50 ../../source/changelog/v1.32.0.md:44
+#: ../../source/changelog/v1.33.0.md:50 ../../source/changelog/v1.34.0.md:54
+#: ../../source/changelog/v1.35.0.md:50 ../../source/changelog/v1.36.0.md:30
+#: ../../source/changelog/v1.37.0.md:40 ../../source/changelog/v1.38.0.md:36
+#: ../../source/changelog/v1.39.0.md:28 ../../source/changelog/v1.40.0.md:38
+#: ../../source/changelog/v1.41.0.md:24 ../../source/changelog/v1.42.0.md:26
+msgid ""
+"As always, many parts of the Flower framework and quality infrastructure "
+"were improved and updated."
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:2
+#, fuzzy
+msgid "v1.41.0 (2026-10-20)"
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:8
+#, fuzzy
+msgid ""
+"`Charles Beauville`, `Chong Shen Ng`, `Daniel Nata Nugraha`, `Heng Pan`, "
+"`Javier`, `Taner Topal`"
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:12
+#, fuzzy
+msgid ""
+"**Use GitHub, Notion, Slack, Attio, and Google connectors through MCP** "
+"([#8328](https://github.com/flwrlabs/flower/pull/8328), "
+"[#8339](https://github.com/flwrlabs/flower/pull/8339), "
+"[#8343](https://github.com/flwrlabs/flower/pull/8343), "
+"[#8362](https://github.com/flwrlabs/flower/pull/8362), "
+"[#8382](https://github.com/flwrlabs/flower/pull/8382))"
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:14
+msgid ""
+"GitHub, Notion, Slack, and Attio connectors now integrate through MCP, "
+"with tools discovered dynamically from each connected account. New Google"
+" Drive, Gmail, and Google Calendar connectors use Google's remote MCP "
+"servers with OAuth/PKCE and token refresh."
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:16
+#, fuzzy
+msgid ""
+"**Store and reuse compacted AgentApp contexts (experimental)** "
+"([#8350](https://github.com/flwrlabs/flower/pull/8350), "
+"[#8363](https://github.com/flwrlabs/flower/pull/8363), "
+"[#8364](https://github.com/flwrlabs/flower/pull/8364), "
+"[#8367](https://github.com/flwrlabs/flower/pull/8367), "
+"[#8370](https://github.com/flwrlabs/flower/pull/8370), "
+"[#8371](https://github.com/flwrlabs/flower/pull/8371), "
+"[#8376](https://github.com/flwrlabs/flower/pull/8376), "
+"[#8377](https://github.com/flwrlabs/flower/pull/8377), "
+"[#8380](https://github.com/flwrlabs/flower/pull/8380))"
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:18
+msgid ""
+"AgentApps can now filter run-series events and read or store compacted "
+"contexts through `AgentSession.events`. Compacted contexts are persisted "
+"per run series and exposed through authenticated Runtime API endpoints "
+"with newest-first paginated reads."
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:20
+#, fuzzy
+msgid ""
+"**Lay the groundwork for faster AgentApp responses** "
+"([#8375](https://github.com/flwrlabs/flower/pull/8375), "
+"[#8388](https://github.com/flwrlabs/flower/pull/8388))"
+msgstr ""
+
+#: ../../source/changelog/v1.41.0.md:22
+#, fuzzy
+msgid ""
+"**General improvements** "
+"([#8341](https://github.com/flwrlabs/flower/pull/8341), "
+"[#8345](https://github.com/flwrlabs/flower/pull/8345), "
+"[#8349](https://github.com/flwrlabs/flower/pull/8349), "
+"[#8356](https://github.com/flwrlabs/flower/pull/8356), "
+"[#8357](https://github.com/flwrlabs/flower/pull/8357), "
+"[#8358](https://github.com/flwrlabs/flower/pull/8358), "
+"[#8359](https://github.com/flwrlabs/flower/pull/8359), "
+"[#8360](https://github.com/flwrlabs/flower/pull/8360), "
+"[#8361](https://github.com/flwrlabs/flower/pull/8361), "
+"[#8365](https://github.com/flwrlabs/flower/pull/8365), "
+"[#8366](https://github.com/flwrlabs/flower/pull/8366), "
+"[#8372](https://github.com/flwrlabs/flower/pull/8372), "
+"[#8373](https://github.com/flwrlabs/flower/pull/8373), "
+"[#8374](https://github.com/flwrlabs/flower/pull/8374), "
+"[#8378](https://github.com/flwrlabs/flower/pull/8378), "
+"[#8384](https://github.com/flwrlabs/flower/pull/8384), "
+"[#8387](https://github.com/flwrlabs/flower/pull/8387), "
+"[#8389](https://github.com/flwrlabs/flower/pull/8389), "
+"[#8394](https://github.com/flwrlabs/flower/pull/8394))"
+msgstr ""
+
+#: ../../source/changelog/v1.40.0.md:2
+#, fuzzy
+msgid "v1.40.0 (2026-10-14)"
+msgstr ""
+
+#: ../../source/changelog/v1.40.0.md:8
+#, fuzzy
+msgid ""
+"`Charles Beauville`, `Chong Shen Ng`, `Daniel J. Beutel`, `Daniel Nata "
+"Nugraha`, `Dimitris Stripelis`, `Heng Pan`, `Istiaque Ahmed`, `Javier`, "
+"`Julian Rußmeyer`, `Ruth Galindo`, `Stephane Moroso`, `Taner Topal`"
+msgstr ""
 
 #: ../../source/changelog/v1.40.0.md:12
 #, fuzzy
@@ -285,27 +467,6 @@ msgid ""
 "[#8342](https://github.com/flwrlabs/flower/pull/8342), "
 "[#8347](https://github.com/flwrlabs/flower/pull/8347), "
 "[#8354](https://github.com/flwrlabs/flower/pull/8354))"
-msgstr ""
-
-#: ../../source/changelog/v1.10.0.md:68 ../../source/changelog/v1.11.0.md:65
-#: ../../source/changelog/v1.12.0.md:64 ../../source/changelog/v1.13.0.md:69
-#: ../../source/changelog/v1.13.1.md:32 ../../source/changelog/v1.14.0.md:63
-#: ../../source/changelog/v1.15.0.md:80 ../../source/changelog/v1.16.0.md:54
-#: ../../source/changelog/v1.17.0.md:85 ../../source/changelog/v1.18.0.md:50
-#: ../../source/changelog/v1.19.0.md:68 ../../source/changelog/v1.20.0.md:66
-#: ../../source/changelog/v1.21.0.md:56 ../../source/changelog/v1.22.0.md:40
-#: ../../source/changelog/v1.23.0.md:48 ../../source/changelog/v1.24.0.md:42
-#: ../../source/changelog/v1.25.0.md:36 ../../source/changelog/v1.26.0.md:44
-#: ../../source/changelog/v1.27.0.md:50 ../../source/changelog/v1.28.0.md:50
-#: ../../source/changelog/v1.29.0.md:46 ../../source/changelog/v1.30.0.md:34
-#: ../../source/changelog/v1.31.0.md:50 ../../source/changelog/v1.32.0.md:44
-#: ../../source/changelog/v1.33.0.md:50 ../../source/changelog/v1.34.0.md:54
-#: ../../source/changelog/v1.35.0.md:50 ../../source/changelog/v1.36.0.md:30
-#: ../../source/changelog/v1.37.0.md:40 ../../source/changelog/v1.38.0.md:36
-#: ../../source/changelog/v1.39.0.md:28 ../../source/changelog/v1.40.0.md:38
-msgid ""
-"As always, many parts of the Flower framework and quality infrastructure "
-"were improved and updated."
 msgstr ""
 
 #: ../../source/changelog/v0.16.0.md:21 ../../source/changelog/v0.17.0.md:33
@@ -21795,12 +21956,12 @@ msgid ""
 "subclasses to implement several abstract methods:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:97
+#: ../../source/explanation-flower-strategy-abstraction.rst:98
 #, fuzzy
 msgid "Creating a new strategy"
 msgstr "server.strategy"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:99
+#: ../../source/explanation-flower-strategy-abstraction.rst:100
 msgid ""
 "You can customize an existing strategy (e.g., |fedavg_link|_) by "
 "overriding one or several of its methods. For full flexibility, you can "
@@ -21809,90 +21970,95 @@ msgid ""
 "implement the abstract methods:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:127
+#: ../../source/explanation-flower-strategy-abstraction.rst:128
 msgid ""
 "The ``start`` method is already implemented in the base class and "
 "typically does not need to be overridden. It orchestrates the federated "
 "learning process by invoking the abstract methods in sequence."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:133
+#: ../../source/explanation-flower-strategy-abstraction.rst:134
 #, fuzzy
 msgid "Understand ``start`` method"
 msgstr ":code:`evaluate`方法"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:135
+#: ../../source/explanation-flower-strategy-abstraction.rst:136
 msgid "The ``start`` method of the ``Strategy`` base class follows this workflow:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:137
+#: ../../source/explanation-flower-strategy-abstraction.rst:138
 msgid ""
 "Call ``evaluate_fn`` (if provided) to evaluate the initial model on the "
 "ServerApp side."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:139
+#: ../../source/explanation-flower-strategy-abstraction.rst:140
 msgid "Call ``configure_train`` to generate training messages for ClientApps."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:140
+#: ../../source/explanation-flower-strategy-abstraction.rst:141
 #, fuzzy
 msgid "Send training messages to ClientApps."
 msgstr "客户端"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:141
+#: ../../source/explanation-flower-strategy-abstraction.rst:142
 msgid ""
 "ClientApps run their ``@app.train()`` function and return training "
 "replies."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:142
+#: ../../source/explanation-flower-strategy-abstraction.rst:143
 msgid "Call ``aggregate_train`` to aggregate the training replies."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:143
+#: ../../source/explanation-flower-strategy-abstraction.rst:144
 msgid ""
 "Call ``configure_evaluate`` to generate evaluation messages for "
 "ClientApps."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:144
+#: ../../source/explanation-flower-strategy-abstraction.rst:145
 #, fuzzy
 msgid "Send evaluation messages to ClientApps."
 msgstr "客户端"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:145
+#: ../../source/explanation-flower-strategy-abstraction.rst:146
 msgid ""
 "ClientApps run their ``@app.evaluate()`` function and return evaluation "
 "replies."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:146
+#: ../../source/explanation-flower-strategy-abstraction.rst:147
 msgid "Call ``aggregate_evaluate`` to aggregate the evaluation replies."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:147
+#: ../../source/explanation-flower-strategy-abstraction.rst:148
 msgid ""
 "Call ``evaluate_fn`` (if provided) to evaluate the aggregated model on "
 "the ServerApp side."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:149
-#, fuzzy
-msgid "Repeat steps 2-10 for the specified number of rounds."
-msgstr "联邦平均动量策略。"
-
 #: ../../source/explanation-flower-strategy-abstraction.rst:150
 msgid ""
-"Return the final ``Result``, which contains the final model and metrics "
-"history."
+"Call ``should_stop`` (if provided) with the completed round number and "
+"accumulated ``Result``. If it returns ``True``, stop executing rounds"
 msgstr ""
 
 #: ../../source/explanation-flower-strategy-abstraction.rst:152
+msgid "Otherwise, repeat steps 2-11 up to ``num_rounds`` times"
+msgstr ""
+
+#: ../../source/explanation-flower-strategy-abstraction.rst:153
+msgid ""
+"Return the final ``Result``, which contains the final model and metrics "
+"history"
+msgstr ""
+
+#: ../../source/explanation-flower-strategy-abstraction.rst:155
 msgid "The following diagram illustrates the flow."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:156
+#: ../../source/explanation-flower-strategy-abstraction.rst:159
 msgid ""
 "The sequence diagram below shows the interaction between ``ServerApp``, "
 "``Strategy`` (inside ``ServerApp``), and ``ClientApp``. In reality, they "
@@ -21902,12 +22068,12 @@ msgid ""
 "Communication <ref-flower-network-communication>` guide."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:201
+#: ../../source/explanation-flower-strategy-abstraction.rst:204
 #, fuzzy
 msgid "The ``configure_train`` method"
 msgstr ":code:`configure_fit`方法"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:203
+#: ../../source/explanation-flower-strategy-abstraction.rst:206
 #, fuzzy
 msgid ""
 "The ``configure_train`` method is responsible for preparing the next "
@@ -21919,40 +22085,40 @@ msgstr ""
 "负责配置即将开始的一轮训练。*配置*在这里是什么意思？配置一轮训练意味着选择客户并决定向这些客户发送什么指令。:code:`configure_fit`"
 " 说明了这一点："
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:207
-#: ../../source/explanation-flower-strategy-abstraction.rst:249
-#: ../../source/explanation-flower-strategy-abstraction.rst:287
-#: ../../source/explanation-flower-strategy-abstraction.rst:330
+#: ../../source/explanation-flower-strategy-abstraction.rst:210
+#: ../../source/explanation-flower-strategy-abstraction.rst:252
+#: ../../source/explanation-flower-strategy-abstraction.rst:290
+#: ../../source/explanation-flower-strategy-abstraction.rst:333
 msgid "Here is the method signature:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:217
-#: ../../source/explanation-flower-strategy-abstraction.rst:297
+#: ../../source/explanation-flower-strategy-abstraction.rst:220
+#: ../../source/explanation-flower-strategy-abstraction.rst:300
 #, fuzzy
 msgid "This method takes four arguments:"
 msgstr "这种方法是幂等的。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:219
-#: ../../source/explanation-flower-strategy-abstraction.rst:263
-#: ../../source/explanation-flower-strategy-abstraction.rst:299
-#: ../../source/explanation-flower-strategy-abstraction.rst:344
+#: ../../source/explanation-flower-strategy-abstraction.rst:222
+#: ../../source/explanation-flower-strategy-abstraction.rst:266
+#: ../../source/explanation-flower-strategy-abstraction.rst:302
+#: ../../source/explanation-flower-strategy-abstraction.rst:347
 msgid "``server_round``: The current round number"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:220
+#: ../../source/explanation-flower-strategy-abstraction.rst:223
 #, fuzzy
 msgid "``arrays``: The current global model parameters"
 msgstr "当前（全局）模型参数。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:221
+#: ../../source/explanation-flower-strategy-abstraction.rst:224
 msgid "``config``: A configuration dictionary for the round"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:222
+#: ../../source/explanation-flower-strategy-abstraction.rst:225
 msgid "``grid``: The object responsible for managing communication with clients"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:224
+#: ../../source/explanation-flower-strategy-abstraction.rst:227
 #, fuzzy
 msgid ""
 "The return value is an iterable of ``Message`` objects, where each "
@@ -21960,26 +22126,26 @@ msgid ""
 "typical implementation of ``configure_train`` will:"
 msgstr "返回值是一个元组列表，每个元组代表将发送到特定客户端的指令。策略实现通常在 :code:`configure_fit` 中执行以下步骤："
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:228
+#: ../../source/explanation-flower-strategy-abstraction.rst:231
 msgid ""
 "Use the ``grid`` to randomly sample a subset (or all) of the available "
 "clients"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:229
+#: ../../source/explanation-flower-strategy-abstraction.rst:232
 msgid ""
 "Create one ``Message`` per selected client, containing the global model "
 "parameters and configuration values"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:232
+#: ../../source/explanation-flower-strategy-abstraction.rst:235
 msgid ""
 "More advanced strategies can implement custom client selection logic by "
 "using the capabilities of ``grid``. A client only participates in a round"
 " if ``configure_train`` generates a message for its node ID."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:238
+#: ../../source/explanation-flower-strategy-abstraction.rst:241
 msgid ""
 "Because the return value is defined per client, strategies can easily "
 "implement heterogeneous configurations. For example, different clients "
@@ -21987,12 +22153,12 @@ msgid ""
 "customized training behaviors."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:244
+#: ../../source/explanation-flower-strategy-abstraction.rst:247
 #, fuzzy
 msgid "The ``aggregate_train`` method"
 msgstr ":code:`aggregate_fit` 方法"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:246
+#: ../../source/explanation-flower-strategy-abstraction.rst:249
 #, fuzzy
 msgid ""
 "The ``aggregate_train`` method is responsible for aggregating the "
@@ -22000,51 +22166,51 @@ msgid ""
 "``configure_train``."
 msgstr ":code:`aggregate_fit` 负责汇总在 :code:`configure_fit` 中选择并要求训练的客户端所返回的结果。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:261
-#: ../../source/explanation-flower-strategy-abstraction.rst:342
+#: ../../source/explanation-flower-strategy-abstraction.rst:264
+#: ../../source/explanation-flower-strategy-abstraction.rst:345
 #, fuzzy
 msgid "This method takes two arguments:"
 msgstr "这种方法是幂等的。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:264
+#: ../../source/explanation-flower-strategy-abstraction.rst:267
 #, fuzzy
 msgid ""
 "``replies``: An iterable of ``Message`` objects from the participating "
 "clients"
 msgstr "**replies** -- 从超级链接收到的回复信息的迭代。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:266
+#: ../../source/explanation-flower-strategy-abstraction.rst:269
 msgid "It returns a tuple consisting of:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:268
+#: ../../source/explanation-flower-strategy-abstraction.rst:271
 #, fuzzy
 msgid "``ArrayRecord``: The updated global model parameters"
 msgstr "``get_parameters``： 返回当前本地模型参数"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:269
+#: ../../source/explanation-flower-strategy-abstraction.rst:272
 msgid "``MetricRecord``: Aggregated training metrics (such as loss or accuracy)"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:271
+#: ../../source/explanation-flower-strategy-abstraction.rst:274
 msgid ""
 "If aggregation cannot be performed (e.g., if too many clients failed "
 "during the round), the method may decide to return ``(None, None)`` "
 "instead."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:276
+#: ../../source/explanation-flower-strategy-abstraction.rst:279
 msgid ""
 "You can use ``Message.has_error()`` to check if a reply contains an error"
 " and decide how to handle it during aggregation."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:281
+#: ../../source/explanation-flower-strategy-abstraction.rst:284
 #, fuzzy
 msgid "The ``configure_evaluate`` method"
 msgstr ":code:`configure_evaluate`方法"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:283
+#: ../../source/explanation-flower-strategy-abstraction.rst:286
 #, fuzzy
 msgid ""
 "The ``configure_evaluate`` method is responsible for preparing the next "
@@ -22056,60 +22222,60 @@ msgstr ""
 "负责配置下一轮评估。*配置*在这里是什么意思？配置一轮评估意味着选择客户端并决定向这些客户端发送什么指令。:code:`configure_evaluate`"
 " 说明了这一点："
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:300
+#: ../../source/explanation-flower-strategy-abstraction.rst:303
 #, fuzzy
 msgid "``arrays``: The current global model parameters to be evaluated"
 msgstr "当前（全局）模型参数。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:301
+#: ../../source/explanation-flower-strategy-abstraction.rst:304
 msgid "``config``: A configuration dictionary for evaluation"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:302
+#: ../../source/explanation-flower-strategy-abstraction.rst:305
 msgid "``grid``: The object that manages communication with clients"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:304
+#: ../../source/explanation-flower-strategy-abstraction.rst:307
 msgid ""
 "The return value is an iterable of ``Message`` objects, one for each "
 "selected client. Each message typically contains the current global model"
 " parameters and any evaluation configuration."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:308
+#: ../../source/explanation-flower-strategy-abstraction.rst:311
 msgid "A typical implementation of ``configure_evaluate`` will:"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:310
+#: ../../source/explanation-flower-strategy-abstraction.rst:313
 msgid "Use ``grid`` to select a subset (or all) of the available clients"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:311
+#: ../../source/explanation-flower-strategy-abstraction.rst:314
 msgid ""
 "Create one ``Message`` per selected client containing the global model "
 "and evaluation configuration"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:314
+#: ../../source/explanation-flower-strategy-abstraction.rst:317
 msgid ""
 "As with training, more advanced strategies may apply custom client "
 "selection logic or send different evaluation configurations to different "
 "clients."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:319
+#: ../../source/explanation-flower-strategy-abstraction.rst:322
 msgid ""
 "Because each client receives its own message, strategies can implement "
 "heterogeneous evaluation setups. For example, some clients might evaluate"
 " on larger test sets, while others might use specialized metrics."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:325
+#: ../../source/explanation-flower-strategy-abstraction.rst:328
 #, fuzzy
 msgid "The ``aggregate_evaluate`` method"
 msgstr ":code:`aggregate_evaluate` 方法"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:327
+#: ../../source/explanation-flower-strategy-abstraction.rst:330
 #, fuzzy
 msgid ""
 "The ``aggregate_evaluate`` method is responsible for aggregating the "
@@ -22119,13 +22285,13 @@ msgstr ""
 ":code:`aggregate_evaluate` 负责汇总在 :code:`configure_evaluate` "
 "中选择并要求评估的客户端返回的结果。"
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:345
+#: ../../source/explanation-flower-strategy-abstraction.rst:348
 msgid ""
 "``replies``: An iterable of ``Message`` objects returned by the clients "
 "after they executed evaluation"
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:348
+#: ../../source/explanation-flower-strategy-abstraction.rst:351
 msgid ""
 "It returns a single ``MetricRecord`` that represents the aggregated "
 "evaluation metrics across all participating clients. If aggregation "
@@ -22133,7 +22299,7 @@ msgid ""
 "missing metrics), the method may return ``None``."
 msgstr ""
 
-#: ../../source/explanation-flower-strategy-abstraction.rst:354
+#: ../../source/explanation-flower-strategy-abstraction.rst:357
 msgid ""
 "As with training, ``Message.has_error()`` can be used to detect and "
 "handle client errors during aggregation."
@@ -22946,6 +23112,7 @@ msgstr ""
 #: ../../source/helm/how-to-deploy-superlink-using-helm.md:579
 #: ../../source/helm/how-to-deploy-supernode-using-helm.md:236
 #: ../../source/ref-api/flwr.agentapp.AgentConnectors.rst
+#: ../../source/ref-api/flwr.agentapp.AgentEvents.rst
 #: ../../source/ref-api/flwr.app.Array.rst
 #: ../../source/ref-api/flwr.app.ArrayRecord.rst
 #: ../../source/ref-api/flwr.app.ConfigRecord.rst
@@ -27598,9 +27765,7 @@ msgid "``flwr/supernode:XYZ``: Use the official SuperNode Docker image."
 msgstr ""
 
 #: ../../source/how-to-connect-supernodes-to-supergrid.rst:167
-msgid ""
-"``--superlink fleet-supergrid.flower.ai:443``: Connect the SuperNode to "
-"SuperGrid."
+msgid "``--superlink api.flower.ai:443``: Connect the SuperNode to SuperGrid."
 msgstr ""
 
 #: ../../source/how-to-connect-supernodes-to-supergrid.rst:169
@@ -28039,19 +28204,21 @@ msgid "Access to a Slurm cluster and a compute partition"
 msgstr ""
 
 #: ../../source/how-to-deploy-supernode-using-slurm.rst:24
-msgid ":doc:`Flower installed <how-to-install-flower>` on the compute nodes"
+msgid ""
+"The latest :doc:`Flower release installed <how-to-install-flower>` on the"
+" compute nodes"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:25
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:26
 #, fuzzy
 msgid "A registered SuperNode private key that is readable from the compute node"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:26
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:27
 msgid "All ClientApp dependencies installed in the execution environment"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:28
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:29
 msgid ""
 "In the examples, replace each value in angle brackets with the "
 "corresponding value for your cluster. The first two process-isolation "
@@ -28059,7 +28226,7 @@ msgid ""
 " The final example lets Slurm place each job."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:34
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:35
 msgid ""
 "You can install ClientApp dependencies in advance or let Flower install "
 "them when an app starts. For the available options and their network "
@@ -28067,36 +28234,36 @@ msgid ""
 "to-install-app-dependencies-at-runtime>`."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:41
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:42
 msgid "Use default subprocess isolation"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:43
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:44
 msgid ""
 "By default, the SuperNode starts each ClientApp as a subprocess. This "
 "model needs only one Slurm job, and the command does not require an "
 "``--isolation`` option."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:46
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:47
 msgid "Create ``supernode-subprocess.sbatch``:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:68
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:69
 msgid "Submit the batch script to deploy the SuperNode:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:74
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:75
 msgid ""
 "Each ClientApp process that the SuperNode starts can use the CPU and "
 "memory assigned to this job."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:79
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:80
 msgid "Use process isolation"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:81
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:82
 msgid ""
 "With ``process`` isolation, Slurm manages the SuperNode and SuperExec as "
 "separate jobs. The SuperNode receives tasks from SuperGrid, while the "
@@ -28104,13 +28271,13 @@ msgid ""
 "processes."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:85
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:86
 msgid ""
 "The Runtime API in this example listens on ``127.0.0.1``, so both jobs "
 "must use the same compute node."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:90
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:91
 msgid ""
 "The process-isolation examples below are minimal configurations for a "
 "dedicated or otherwise trusted compute node. On a multi-tenant node, "
@@ -28121,25 +28288,25 @@ msgid ""
 "environments is outside the scope of this guide."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:97
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:98
 msgid "Create ``supernode-process.sbatch``:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:123
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:124
 msgid "Create ``superexec-clientapp.sbatch``:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:155
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:156
 msgid "Submit the SuperNode job first, then submit the SuperExec job:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:162
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:163
 msgid ""
 "The SuperExec waits for ClientApp tasks from the SuperNode. The ClientApp"
 " processes inherit the CPU and memory allocation of the SuperExec job."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:167
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:168
 msgid ""
 "``--insecure`` applies only to the local Runtime API connection between "
 "SuperExec and SuperNode. The connection from SuperNode to SuperGrid still"
@@ -28148,11 +28315,11 @@ msgid ""
 "enable-tls-connections>`."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:174
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:175
 msgid "Use process isolation with a GPU ClientApp"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:176
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:177
 msgid ""
 "To run a ClientApp on a GPU, use the ``supernode-process.sbatch`` script "
 "from the previous section without adding a GPU request. The SuperNode "
@@ -28160,7 +28327,7 @@ msgid ""
 "need access to the GPU."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:180
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:181
 msgid ""
 "Request the GPU only in the SuperExec job. The ClientApp process then "
 "inherits the SuperExec environment, including ``CUDA_VISIBLE_DEVICES``. "
@@ -28169,17 +28336,17 @@ msgid ""
 "node."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:185
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:186
 msgid "Create ``superexec-clientapp-gpu.sbatch``:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:223
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:224
 msgid ""
 "Submit the unchanged process-isolated SuperNode job first, then submit "
 "the GPU SuperExec job:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:231
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:232
 msgid ""
 "The ClientApp environment must include a GPU-enabled version of its "
 "machine learning framework and the required GPU libraries. For example, a"
@@ -28187,11 +28354,11 @@ msgid ""
 "``CUDA_VISIBLE_DEVICES``."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:237
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:238
 msgid "Discover the SuperNode address from its job ID"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:239
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:240
 msgid ""
 "The preceding process-isolation examples use ``--nodelist`` to place both"
 " jobs on the same node. You can remove this constraint when the compute "
@@ -28200,32 +28367,32 @@ msgid ""
 "starts, SuperExec uses that ID to discover the assigned node's address."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:245
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:246
 msgid "Create ``supernode-process-dynamic.sbatch``:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:270
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:271
 msgid ""
 "The SuperNode listens on all network interfaces because Slurm can place "
 "SuperExec on a different node. Create ``superexec-clientapp-"
 "dynamic.sbatch`` without a ``--nodelist`` directive:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:331
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:332
 msgid ""
 "This example requests one GPU for SuperExec. Remove ``#SBATCH "
 "--gres=gpu:1`` when the ClientApp does not need a GPU."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:334
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:335
 msgid "Create ``submit-process-pair.sh`` to submit both jobs:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:354
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:355
 msgid "Run the submission script:"
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:360
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:361
 msgid ""
 "The first ``sbatch`` command returns the SuperNode job ID. The second job"
 " uses an ``after:<job-id>`` dependency, so Slurm holds it until the "
@@ -28235,7 +28402,7 @@ msgid ""
 "becoming available."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:368
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:369
 msgid ""
 "This minimal example exposes an unauthenticated and unencrypted Runtime "
 "API on the compute-node network. Use it only in a trusted, isolated test "
@@ -28244,7 +28411,7 @@ msgid ""
 "guide."
 msgstr ""
 
-#: ../../source/how-to-deploy-supernode-using-slurm.rst:373
+#: ../../source/how-to-deploy-supernode-using-slurm.rst:374
 msgid ""
 "For more information about the two isolation modes and the Runtime API, "
 "see :doc:`Flower Network Communication <ref-flower-network-"
@@ -34838,20 +35005,52 @@ msgstr ""
 
 #: ../../source/how-to-use-strategies.rst:281
 msgid ""
-"Finally, the last argument in ``start`` is named ``evaluate_fn`` and it "
-"allows passing to it a callback function to evaluate the aggregated model"
-" on some local data that the ``ServerApp`` might have access to. This "
-"callback is also useful if you want to save the global model at the end "
-"of every round (or every N rounds). Let's see what the signature of this "
-"callback is and how to use it:"
+"The ``evaluate_fn`` argument allows passing a callback function to "
+"evaluate the aggregated model on some local data that the ``ServerApp`` "
+"might have access to. This callback is also useful if you want to save "
+"the global model at the end of every round (or every N rounds). Let's see"
+" what the signature of this callback is and how to use it:"
 msgstr ""
 
-#: ../../source/how-to-use-strategies.rst:312
+#: ../../source/how-to-use-strategies.rst:311
 msgid ""
 "Take a look at the `quickstart-pytorch "
 "<https://github.com/flwrlabs/flower/blob/main/examples/quickstart-"
 "pytorch>`_ example on GitHub for a complete example using several of the "
 "concepts presented in this how-to guide."
+msgstr ""
+
+#: ../../source/how-to-use-strategies.rst:318
+msgid "Stop a strategy run early"
+msgstr ""
+
+#: ../../source/how-to-use-strategies.rst:320
+msgid ""
+"Pass a ``should_stop`` callback to ``start`` to stop before reaching "
+"``num_rounds``. The callback receives the completed round number and "
+"accumulated :class:`~flwr.serverapp.strategy.Result`. For example, stop "
+"when aggregated federated evaluation accuracy reaches 90%:"
+msgstr ""
+
+#: ../../source/how-to-use-strategies.rst:345
+msgid ""
+"The predicate runs once after each full round, including federated "
+"evaluation and any centralized evaluation. It does not run after the "
+"initial evaluation at round zero. Return ``True`` to stop and ``False`` "
+"to continue, and treat the results as read-only. When the predicate "
+"returns ``True``, no further round is dispatched. The returned ``Result``"
+" contains the current global model and all metrics collected so far, so "
+"the ServerApp can continue with saving the model or other application "
+"logic."
+msgstr ""
+
+#: ../../source/how-to-use-strategies.rst:352
+msgid ""
+"``num_rounds`` remains the maximum number of rounds. Without "
+"``should_stop``, all configured rounds run as before. Errors raised by "
+"the predicate propagate normally. Custom strategies that override "
+"``start`` must forward ``should_stop`` to the base implementation or "
+"invoke it in their own round loop."
 msgstr ""
 
 #: ../../source/index.rst:37
@@ -36051,6 +36250,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/ref-api/flwr.agentapp.AgentConnectors.rst
+#: ../../source/ref-api/flwr.agentapp.AgentEvents.rst
 #: ../../source/ref-api/flwr.app.Array.rst
 #: ../../source/ref-api/flwr.app.ArrayRecord.rst
 #: ../../source/ref-api/flwr.app.ConfigRecord.rst
@@ -36110,6 +36310,7 @@ msgid "Independent copies of the model-facing tool schemas."
 msgstr ""
 
 #: ../../source/ref-api/flwr.agentapp.AgentConnectors.rst
+#: ../../source/ref-api/flwr.agentapp.AgentEvents.rst
 #: ../../source/ref-api/flwr.app.Array.rst
 #: ../../source/ref-api/flwr.app.ArrayRecord.rst
 #: ../../source/ref-api/flwr.app.ConfigRecord.rst
@@ -36180,12 +36381,63 @@ msgstr ""
 
 #: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1 of
 #, fuzzy
-msgid ":py:obj:`get_trace <flwr.agentapp.AgentEvents.get_trace>`\\ \\(\\)"
+msgid ""
+":py:obj:`get_compacted_contexts "
+"<flwr.agentapp.AgentEvents.get_compacted_contexts>`\\ \\(\\*\\[\\, "
+"limit\\, ...\\]\\)"
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1
+#: flwr.agentapp.base.AgentEvents.get_compacted_contexts:1 of
+msgid "Return the newest summaries."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1 of
+#, fuzzy
+msgid ""
+":py:obj:`get_trace <flwr.agentapp.AgentEvents.get_trace>`\\ \\(\\*\\[\\, "
+"event\\_types\\, after\\_event\\_id\\, ...\\]\\)"
 msgstr ""
 
 #: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1
 #: flwr.agentapp.base.AgentEvents.get_trace:1 of
-msgid "Get events from all runs in the current run series."
+msgid "Get matching events from all runs in the current run series."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1 of
+msgid ""
+":py:obj:`put_compacted_context "
+"<flwr.agentapp.AgentEvents.put_compacted_context>`\\ \\(\\*\\, "
+"through\\_event\\_id\\, ...\\)"
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.emit:1:<autosummary>:1
+#: flwr.agentapp.base.AgentEvents.put_compacted_context:1 of
+msgid "Store a summary."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.get_trace:3 of
+msgid ""
+"Filter by the given event types. If unset, include all event types. Use "
+"`RUN_SUMMARY_EVENT_TYPES` for common summary inputs."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.get_trace:6 of
+msgid "Return events with IDs greater than this value."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.get_trace:8 of
+msgid "Return events with IDs less than this value."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.get_trace:10 of
+msgid ""
+"Return the newest N matching events in ID order. If unset or zero, return"
+" all matching events."
+msgstr ""
+
+#: flwr.agentapp.base.AgentEvents.get_trace:14 of
+msgid "Matching event envelopes."
 msgstr ""
 
 #: ../../source/ref-api/flwr.agentapp.AgentGrid.rst:2
@@ -42869,18 +43121,15 @@ msgstr ""
 #, fuzzy
 msgid ""
 ":py:obj:`pull_messages <flwr.server.Driver.pull_messages>`\\ "
-"\\(message\\_ids\\)"
+"\\(\\[reply\\_to\\_message\\_ids\\, ...\\]\\)"
 msgstr ""
-":py:obj:`pull_messages <flwr.server.Driver.pull_messages>`\\ "
-"\\(message\\_ids\\)"
 
 #: ../../source/ref-api/flwr.server.Driver.rst:44:<autosummary>:1
 #: ../../source/ref-api/flwr.server.Grid.rst:44:<autosummary>:1
 #: ../../source/ref-api/flwr.serverapp.Grid.rst:44:<autosummary>:1
 #: flwr.serverapp.grid.grid.Grid.pull_messages:1 of
-#, fuzzy
-msgid "Pull messages based on message IDs."
-msgstr "根据信息 ID 提取信息。"
+msgid "Pull messages with an optional correlation filter."
+msgstr ""
 
 #: ../../source/ref-api/flwr.server.Driver.rst:44:<autosummary>:1
 #, fuzzy
@@ -42991,18 +43240,22 @@ msgid ""
 msgstr "**message** -- 具有指定内容和元数据的新 \"信息 \"实例。"
 
 #: flwr.serverapp.grid.grid.Grid.pull_messages:3 of
-#, fuzzy
+msgid "Messages are addressed to this Grid's node and belong to its run."
+msgstr ""
+
+#: flwr.serverapp.grid.grid.Grid.pull_messages:5 of
 msgid ""
-"This method is used to collect messages from the SuperLink that "
-"correspond to a set of given message IDs."
-msgstr "该方法用于从超级链接中收集与一组给定消息 ID 相对应的消息。"
+"Message IDs to filter ``reply_to_message_id`` by. If ``None``, no "
+"correlation filter is applied. An empty iterable matches no messages."
+msgstr ""
 
-#: flwr.serverapp.grid.grid.Grid.pull_messages:6 of
-#, fuzzy
-msgid "An iterable of message IDs for which reply messages are to be retrieved."
-msgstr "要检索回复信息的信息 ID 的可迭代项。"
+#: flwr.serverapp.grid.grid.Grid.pull_messages:8 of
+msgid ""
+"Deprecated alias for ``reply_to_message_ids``. Only one of the two "
+"parameters may be non-``None``."
+msgstr ""
 
-#: flwr.serverapp.grid.grid.Grid.pull_messages:9 of
+#: flwr.serverapp.grid.grid.Grid.pull_messages:12 of
 #, fuzzy
 msgid "**messages** -- An iterable of messages received."
 msgstr "**messages** -- 收到的信息迭代。"
@@ -43091,10 +43344,8 @@ msgstr ""
 #, fuzzy
 msgid ""
 ":py:obj:`pull_messages <flwr.server.Grid.pull_messages>`\\ "
-"\\(message\\_ids\\)"
+"\\(\\[reply\\_to\\_message\\_ids\\, ...\\]\\)"
 msgstr ""
-":py:obj:`pull_messages <flwr.server.Driver.pull_messages>`\\ "
-"\\(message\\_ids\\)"
 
 #: ../../source/ref-api/flwr.server.Grid.rst:44:<autosummary>:1
 #, fuzzy
@@ -47570,10 +47821,8 @@ msgstr ""
 #, fuzzy
 msgid ""
 ":py:obj:`pull_messages <flwr.serverapp.Grid.pull_messages>`\\ "
-"\\(message\\_ids\\)"
+"\\(\\[reply\\_to\\_message\\_ids\\, ...\\]\\)"
 msgstr ""
-":py:obj:`pull_messages <flwr.server.Driver.pull_messages>`\\ "
-"\\(message\\_ids\\)"
 
 #: ../../source/ref-api/flwr.serverapp.Grid.rst:44:<autosummary>:1
 #, fuzzy
@@ -49196,8 +49445,8 @@ msgstr ""
 
 #: flwr.serverapp.strategy.strategy.Strategy.start:11 of
 #, fuzzy
-msgid "Number of federated learning rounds to execute."
-msgstr "使用联邦学习策略"
+msgid "Maximum number of federated learning rounds to execute."
+msgstr ""
 
 #: flwr.serverapp.strategy.strategy.Strategy.start:13 of
 msgid "Timeout in seconds for waiting for node responses."
@@ -49223,7 +49472,16 @@ msgid ""
 "Defaults to None."
 msgstr ""
 
-#: flwr.serverapp.strategy.strategy.Strategy.start:27 of
+#: flwr.serverapp.strategy.strategy.Strategy.start:26 of
+msgid ""
+"Optional predicate to determine whether to stop training early. Called at"
+" the end of each round with the round number and accumulated results. "
+"Return True to stop and return the model and metrics collected so far. "
+"Not called for round zero. Results must not be modified. Defaults to None"
+" (no early stopping)."
+msgstr ""
+
+#: flwr.serverapp.strategy.strategy.Strategy.start:33 of
 msgid ""
 "Results containing final model arrays and also training metrics, "
 "evaluation metrics and global evaluation metrics (if provided) from all "
@@ -51128,7 +51386,7 @@ msgstr ""
 #: ../../source/ref-exit-codes/401.rst:13
 #: ../../source/ref-exit-codes/402.rst:14
 #: ../../source/ref-exit-codes/500.rst:17
-#: ../../source/ref-exit-codes/600.rst:14
+#: ../../source/ref-exit-codes/600.rst:15
 #: ../../source/ref-exit-codes/602.rst:17
 #: ../../source/ref-exit-codes/603.rst:14
 #: ../../source/ref-exit-codes/604.rst:13
@@ -51679,24 +51937,31 @@ msgstr ""
 
 #: ../../source/ref-exit-codes/600.rst:9
 msgid ""
-"The provided address is invalid and cannot be parsed. It must be a valid "
-"URL, IPv4, or IPv6 address."
-msgstr ""
-
-#: ../../source/ref-exit-codes/600.rst:16
-msgid "Verify that the address is correctly formatted as one of the following:"
+"The provided address is invalid and cannot be parsed. It must be a domain"
+" name, IPv4, or IPv6 address with a port number, without a URL prefix "
+"such as ``http://`` or ``https://``."
 msgstr ""
 
 #: ../../source/ref-exit-codes/600.rst:17
-msgid "URL (e.g., ``https://127.0.0.1:8080`` or ``https://example.com:8080``)"
-msgstr ""
-
-#: ../../source/ref-exit-codes/600.rst:18
-msgid "IPv4 (e.g., ``192.168.1.1:9091``)"
+msgid "Verify that the address is correctly formatted as one of the following:"
 msgstr ""
 
 #: ../../source/ref-exit-codes/600.rst:19
+msgid "Domain name (e.g., ``api.flower.ai:443`` or ``example.com:8080``)"
+msgstr ""
+
+#: ../../source/ref-exit-codes/600.rst:20
+msgid "IPv4 (e.g., ``192.168.1.1:9091``)"
+msgstr ""
+
+#: ../../source/ref-exit-codes/600.rst:21
 msgid "IPv6 (e.g., ``[2001:0db8::1]:8000``)"
+msgstr ""
+
+#: ../../source/ref-exit-codes/600.rst:23
+msgid ""
+"For ``flower-supernode``, HTTPS is enabled by default. To use HTTP, pass "
+"``--insecure`` instead of adding a URL prefix to ``--superlink``."
 msgstr ""
 
 #: ../../source/ref-exit-codes/602.rst:3
@@ -89557,5 +89822,69 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "SuperGrid run logs showing the custom ServerApp print statements"
+#~ msgstr ""
+
+#~ msgid ":doc:`Flower installed <how-to-install-flower>` on the compute nodes"
+#~ msgstr ""
+
+#~ msgid ":py:obj:`get_trace <flwr.agentapp.AgentEvents.get_trace>`\\ \\(\\)"
+#~ msgstr ""
+
+#~ msgid "Get events from all runs in the current run series."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The provided address is invalid and "
+#~ "cannot be parsed. It must be a "
+#~ "valid URL, IPv4, or IPv6 address."
+#~ msgstr ""
+
+#~ msgid "URL (e.g., ``https://127.0.0.1:8080`` or ``https://example.com:8080``)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":py:obj:`put_compacted_context "
+#~ "<flwr.agentapp.AgentEvents.put_compacted_context>`\\ \\(\\*\\,"
+#~ " through\\_event\\_id\\, text\\)"
+#~ msgstr ""
+
+#~ msgid "Pull messages based on message IDs."
+#~ msgstr "根据信息 ID 提取信息。"
+
+#~ msgid ""
+#~ "This method is used to collect "
+#~ "messages from the SuperLink that "
+#~ "correspond to a set of given "
+#~ "message IDs."
+#~ msgstr "该方法用于从超级链接中收集与一组给定消息 ID 相对应的消息。"
+
+#~ msgid ""
+#~ "An iterable of message IDs for "
+#~ "which reply messages are to be "
+#~ "retrieved."
+#~ msgstr "要检索回复信息的信息 ID 的可迭代项。"
+
+#~ msgid "Repeat steps 2-10 for the specified number of rounds."
+#~ msgstr "联邦平均动量策略。"
+
+#~ msgid ""
+#~ "Return the final ``Result``, which "
+#~ "contains the final model and metrics "
+#~ "history."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Finally, the last argument in ``start``"
+#~ " is named ``evaluate_fn`` and it "
+#~ "allows passing to it a callback "
+#~ "function to evaluate the aggregated "
+#~ "model on some local data that the"
+#~ " ``ServerApp`` might have access to. "
+#~ "This callback is also useful if "
+#~ "you want to save the global model"
+#~ " at the end of every round (or"
+#~ " every N rounds). Let's see what "
+#~ "the signature of this callback is "
+#~ "and how to use it:"
 #~ msgstr ""
 

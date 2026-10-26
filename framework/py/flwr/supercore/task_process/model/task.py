@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import time
+from contextlib import nullcontext
 from typing import cast
 
 from flwr.common.serde import message_from_proto, message_to_proto
@@ -30,6 +31,7 @@ from flwr.proto.task_pb2 import TaskEvent  # pylint: disable=E0611
 from flwr.supercore.json_message.model_message import ModelRequest, ModelResponse
 from flwr.supercore.runtime import RuntimeHttpClient
 from flwr.supercore.task_process.usage import TaskUsageRecorder
+from flwr.supercore.tracing import trace_span
 from flwr.supercore.typing import JSONObject
 from flwr.supercore.utils import strict_json_dumps
 
@@ -43,7 +45,8 @@ _TEXT_DELTA_EVENTS = frozenset(
 
 def handle_task(client: RuntimeHttpClient) -> None:
     """Run one model task request."""
-    request_message = _pull_model_request(client)
+    with trace_span("model.request_wait"):
+        request_message = _pull_model_request(client)
     is_stream = request_message.payload.get("stream") is True
     if request_message.metadata.src_task_id is None:
         raise RuntimeError("Model request source task is not set.")
@@ -63,12 +66,21 @@ def handle_task(client: RuntimeHttpClient) -> None:
     # Stream events are exposed through Control.StreamRunEvents.
     events: list[TaskEvent] = []
     first_text_event_flushed = False
+    first_output_published = False
 
     def _flush_events() -> None:
         """Push buffered stream events."""
+        nonlocal first_output_published
         if not is_stream or not events:
             return
-        client.PushTaskEvents(PushTaskEventsRequest(events=events))
+        first_output = not first_output_published and any(
+            event.event == "response.output_text.delta" for event in events
+        )
+        with (
+            trace_span("model.first_output_publish") if first_output else nullcontext()
+        ):
+            client.PushTaskEvents(PushTaskEventsRequest(events=events))
+        first_output_published |= first_output
         events.clear()
 
     def _buffer_event(event: JSONObject) -> None:
@@ -99,7 +111,8 @@ def handle_task(client: RuntimeHttpClient) -> None:
         _flush_events()
         # Push the response
         if response is not None:
-            _push_model_response(response)
+            with trace_span("model.response_publish"):
+                _push_model_response(response)
 
 
 def _pull_model_request(client: RuntimeHttpClient) -> ModelRequest:
