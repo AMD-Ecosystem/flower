@@ -197,12 +197,16 @@ select a subset of the ROCr-visible devices. Test for ``ROCR_VISIBLE_DEVICES`` b
 *set*, not merely non-empty: a scheduler can export it as an empty string to hide every
 device, and that case must still satisfy Ray's import guard by propagating an equally
 empty ``HIP_VISIBLE_DEVICES`` -- counting entries in an empty string would otherwise
-synthesize ``HIP_VISIBLE_DEVICES=0`` and wrongly reveal a device:
+synthesize ``HIP_VISIBLE_DEVICES=0`` and wrongly reveal a device. The same applies to
+the nonempty ``-1`` sentinel some schedulers use for "no device": it contains no comma,
+so the comma-counting branch would otherwise read it as one listed GPU and export
+``HIP_VISIBLE_DEVICES=0``, letting Ray advertise and schedule onto a device ROCr never
+actually exposed:
 
 .. code-block:: shell
 
     if [ -n "${ROCR_VISIBLE_DEVICES+x}" ] && [ -z "${HIP_VISIBLE_DEVICES+x}" ]; then
-        if [ -z "$ROCR_VISIBLE_DEVICES" ]; then
+        if [ -z "$ROCR_VISIBLE_DEVICES" ] || [ "$ROCR_VISIBLE_DEVICES" = "-1" ]; then
             export HIP_VISIBLE_DEVICES=""
         else
             _n=$(($(tr -cd ',' <<<"$ROCR_VISIBLE_DEVICES" | wc -c) + 1))
