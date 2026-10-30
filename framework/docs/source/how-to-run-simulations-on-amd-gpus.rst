@@ -193,14 +193,22 @@ Satisfy Ray without disturbing ``ROCR_VISIBLE_DEVICES``, by deriving
 ``HIP_VISIBLE_DEVICES`` from how many devices it already lists rather than copying its
 values. Only do this when ``HIP_VISIBLE_DEVICES`` is not already set -- the import error
 this works around only occurs in that case, and an existing value may deliberately
-select a subset of the ROCr-visible devices:
+select a subset of the ROCr-visible devices. Test for ``ROCR_VISIBLE_DEVICES`` being
+*set*, not merely non-empty: a scheduler can export it as an empty string to hide every
+device, and that case must still satisfy Ray's import guard by propagating an equally
+empty ``HIP_VISIBLE_DEVICES`` -- counting entries in an empty string would otherwise
+synthesize ``HIP_VISIBLE_DEVICES=0`` and wrongly reveal a device:
 
 .. code-block:: shell
 
-    if [ -n "${ROCR_VISIBLE_DEVICES:-}" ] && [ -z "${HIP_VISIBLE_DEVICES+x}" ]; then
-        _n=$(($(tr -cd ',' <<<"$ROCR_VISIBLE_DEVICES" | wc -c) + 1))
-        export HIP_VISIBLE_DEVICES="$(seq -s, 0 $((_n - 1)))"
-        unset _n
+    if [ -n "${ROCR_VISIBLE_DEVICES+x}" ] && [ -z "${HIP_VISIBLE_DEVICES+x}" ]; then
+        if [ -z "$ROCR_VISIBLE_DEVICES" ]; then
+            export HIP_VISIBLE_DEVICES=""
+        else
+            _n=$(($(tr -cd ',' <<<"$ROCR_VISIBLE_DEVICES" | wc -c) + 1))
+            export HIP_VISIBLE_DEVICES="$(seq -s, 0 $((_n - 1)))"
+            unset _n
+        fi
     fi
 
 .. important::
@@ -314,15 +322,31 @@ The preceding warning names the mismatch:
 
 .. code-block:: text
 
-    WARNING : Ray reports no GPUs (GPUs=0) but each client requests num_gpus=0.25,
-    which no node can satisfy. Either this cluster has no GPU, in which case set
-    `num_gpus=0`, or Ray failed to discover one that is present.
+    WARNING : Ray reports no GPU resources (GPUs=0) but each client requests
+    num_gpus=0.25, which no node can satisfy. This does not by itself mean GPU
+    discovery failed: the cluster may have no GPU, or Ray's GPU resources may
+    have been limited deliberately (for example `--init-args-num-gpus 0`). Set
+    `num_gpus=0` if no GPU is expected, otherwise review that limit before
+    suspecting discovery.
 
-On a host where ROCm reaches the GPU, it is the second case: the GPU is present and Ray
-did not find it. Lowering ``client-resources-num-gpus`` will not help, because no
-non-zero value can be satisfied by a cluster reporting ``GPUs=0``. Work through `Point
-Ray at the ROCm SMI library`_ and `Set HIP_VISIBLE_DEVICES for Ray`_, then re-run the
-verification above.
+Three different situations produce this warning, and only one of them calls for the
+ROCm fixes elsewhere in this guide:
+
+- The cluster genuinely has no GPU. Set ``client-resources-num-gpus`` to ``0`` and move
+  on.
+- Ray's GPU resources were limited deliberately, for example via
+  ``flwr federation simulation-config --init-args-num-gpus 0``. Lowering
+  ``client-resources-num-gpus`` will not help here either -- no non-zero value can be
+  satisfied by a cluster reporting ``GPUs=0`` -- but neither will ``ROCM_PATH`` or
+  ``HIP_VISIBLE_DEVICES``, since the limit is applied at ``ray.init()`` and never
+  reaches ROCm. Review, or raise, the configured ``init-args-num-gpus`` value instead.
+- ROCm reaches the GPU but Ray did not discover it. Work through `Point Ray at the ROCm
+  SMI library`_ and `Set HIP_VISIBLE_DEVICES for Ray`_, then re-run the verification
+  above.
+
+Compare what Ray actually detects (``ray.cluster_resources()``, as verified above)
+against the ``--init-args-num-gpus`` value you configured to tell the second case apart
+from the third.
 
 When ``/dev/kfd`` is present, Flower follows that warning with a second one naming the
 ``ROCM_PATH`` requirement directly.
